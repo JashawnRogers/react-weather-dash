@@ -1,15 +1,16 @@
+import './App.css';
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-import { Navigation } from './components/Navigation'
-
+import {Navigation} from './components/Navigation'
+import { Container } from 'react-bootstrap'
 
 function App() {
-  
+  const [searchResults, setSearchResults] = useState([]);
 
   return (
     <div>
-      <Navigation />
+        <div className='position-relative'>
+          <Navigation setSearchResults={setSearchResults} searchResults={searchResults} />
+        </div>
     </div>
   )
 }
