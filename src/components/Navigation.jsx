@@ -3,7 +3,7 @@ import { Container, Navbar, Form, Button, Stack } from 'react-bootstrap'
 import { BsSearch } from 'react-icons/bs'
 import axios from 'axios'
 
-export const Navigation = ({ searchResults ,setSearchResults }) => {
+export const Navigation = ({ searchResults ,setSearchResults, fetchWeatherData }) => {
 
   const [search, setSearch] = useState();
 
@@ -35,19 +35,9 @@ export const Navigation = ({ searchResults ,setSearchResults }) => {
     return () => cancel = true
   }, [search])
 
-  const fetchWeatherData = (lat, lon) => {
-    if (!searchResults) return
 
-    axios
-      .get(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${import.meta.env.VITE_WEATHER_API_KEY}`)
-      .then(res => {
-        console.log(res.data)
-      })
-      .catch(err => console.error(err))
-  } 
-  
   return (
-    <Container fluid className='bg-gradient' style={{backgroundColor: "var(--secondary-color)"}}>
+    <Container fluid className='bg-gradient' style={{backgroundColor: "var(--secondary-color)", height: '10vh'}}>
       <Stack direction='horizontal'>
         <Navbar.Brand className='m-auto text-white display-1 fs-3'>Weather Dashboard</Navbar.Brand>
         <Form className="d-flex me-auto py-2 w-50">
